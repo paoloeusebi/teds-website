@@ -5,14 +5,54 @@ import { getEpisodes } from '../../lib/episodes';
 
 const episodes = await getEpisodes();
 ---
-<Base title="All episodes">
-  <h1>All episodes</h1>
-  <p>{episodes.length} episodes</p>
-  <div class="list">
-    {episodes.map((episode) => <EpisodeCard episode={episode} />)}
+<Base title="All episodes" description={`All ${episodes.length} episodes of The Effective Data Scientist podcast.`}>
+  <div class="container">
+    <header class="page-head">
+      <p class="eyebrow">Archive</p>
+      <h1>All episodes</h1>
+      <label class="search">
+        <span class="visually-hidden">Search episodes</span>
+        <input id="episode-search" type="search" placeholder={`Search ${episodes.length} episodes`} autocomplete="off" />
+      </label>
+      <p id="episode-count" class="count" aria-live="polite">{episodes.length} episodes</p>
+    </header>
+    <div id="episode-list" class="list">
+      {episodes.map((episode) => <EpisodeCard episode={episode} headingLevel="h2" />)}
+    </div>
   </div>
 </Base>
 
+<script>
+  const input = document.getElementById('episode-search') as HTMLInputElement | null;
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('#episode-list [data-search]'));
+  const count = document.getElementById('episode-count');
+  input?.addEventListener('input', () => {
+    const terms = input.value.toLowerCase().split(/\s+/).filter(Boolean);
+    let shown = 0;
+    for (const card of cards) {
+      const match = terms.every((t) => card.dataset.search!.includes(t));
+      card.hidden = !match;
+      if (match) shown++;
+    }
+    if (count) count.textContent = `${shown} ${shown === 1 ? 'episode' : 'episodes'}`;
+  });
+</script>
+
 <style>
-  .list { display: grid; gap: 1rem; }
+  .page-head { padding-block: 3rem 1.5rem; }
+  h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 2.75rem); margin: 0.5rem 0 1.5rem; }
+  .search input {
+    width: 100%;
+    max-width: 32rem;
+    padding: 0.8rem 1.1rem;
+    font: inherit;
+    color: var(--color-ink);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+  }
+  .search input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 3px rgb(29 133 204 / 0.2); }
+  .count { color: var(--color-ink-muted); font-size: 0.9rem; margin: 0.75rem 0 0; }
+  .list { display: grid; gap: 1rem; max-width: 52rem; }
+  .list :global([hidden]) { display: none; }
 </style>

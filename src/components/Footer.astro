@@ -1,29 +1,50 @@
 ---
-import { SITE_TITLE, PLATFORMS } from '../site';
+import { SITE_TITLE, HOSTS, PLATFORMS } from '../site';
+const base = import.meta.env.BASE_URL;
 const year = new Date().getFullYear();
 ---
 <footer class="site-footer">
   <div class="container inner">
-    <p>&copy; {year} {SITE_TITLE}</p>
-    <ul>
-      {PLATFORMS.map((p) => <li><a href={p.url}>{p.name}</a></li>)}
-    </ul>
+    <div class="about">
+      <img src={`${base}brand/icon.png`} alt="" width="40" height="67" />
+      <div>
+        <p class="name">{SITE_TITLE}</p>
+        <p>Hosted by {HOSTS}</p>
+      </div>
+    </div>
+    <nav aria-label="Footer">
+      <a href={`${base}episodes/`}>All episodes</a>
+      {PLATFORMS.map((p) => <a href={p.url}>{p.name}</a>)}
+    </nav>
   </div>
+  <div class="container legal">&copy; {year} {SITE_TITLE}</div>
 </footer>
 
 <style>
   .site-footer {
-    margin-top: 4rem;
-    border-top: 1px solid var(--color-border);
-    color: var(--color-ink-muted);
+    margin-top: 5rem;
+    background: var(--color-ink);
+    color: rgb(243 243 243 / 0.75);
     font-size: 0.9rem;
   }
   .inner {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 1rem;
-    padding-block: 1.5rem;
+    align-items: center;
+    gap: 1.5rem;
+    padding-block: 2.5rem 1.5rem;
   }
-  ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 1rem; }
+  .about { display: flex; align-items: center; gap: 1rem; }
+  .about img { height: 56px; width: auto; }
+  .about p { margin: 0; }
+  .name { font-family: var(--font-display); font-weight: 700; color: var(--color-on-ink); font-size: 1.05rem; }
+  nav { display: flex; flex-wrap: wrap; gap: 1.25rem; }
+  nav a { color: var(--color-on-ink); text-decoration: none; }
+  nav a:hover { color: var(--color-primary-bright); }
+  .legal {
+    padding-block: 1rem 2rem;
+    border-top: 1px solid rgb(243 243 243 / 0.12);
+    font-size: 0.8rem;
+  }
 </style>
