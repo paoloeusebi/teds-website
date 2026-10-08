@@ -1,0 +1,48 @@
+/* Brand tokens from the TEDS Brand Guide */
+:root {
+  --color-bg: #f3f3f3;
+  --color-surface: #ffffff;
+  --color-ink: #032439;
+  --color-ink-muted: #4a5f6e;
+  --color-primary: #1d85cc;
+  --color-primary-bright: #12a4ff;
+  --color-accent: #b4151b;
+  --color-border: #dde3e8;
+
+  --font-heading: 'Montserrat', system-ui, sans-serif;
+  --font-body: 'Montserrat', system-ui, sans-serif;
+  --font-display: 'Comfortaa', 'Montserrat', system-ui, sans-serif;
+
+  --measure: 68ch;
+  --page-width: 72rem;
+  --gutter: clamp(1rem, 4vw, 2rem);
+  --radius: 0.5rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.65;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+a { color: var(--color-primary); }
+a:hover { color: var(--color-primary-bright); }
+
+.container {
+  max-width: var(--page-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.prose { max-width: var(--measure); }

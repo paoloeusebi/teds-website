@@ -1,0 +1,29 @@
+---
+import { SITE_TITLE, PLATFORMS } from '../site';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container inner">
+    <p>&copy; {year} {SITE_TITLE}</p>
+    <ul>
+      {PLATFORMS.map((p) => <li><a href={p.url}>{p.name}</a></li>)}
+    </ul>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: 4rem;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-ink-muted);
+    font-size: 0.9rem;
+  }
+  .inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 1.5rem;
+  }
+  ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 1rem; }
+</style>

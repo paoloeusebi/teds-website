@@ -1,0 +1,18 @@
+---
+import Base from '../../layouts/Base.astro';
+import EpisodeCard from '../../components/EpisodeCard.astro';
+import { getEpisodes } from '../../lib/episodes';
+
+const episodes = await getEpisodes();
+---
+<Base title="All episodes">
+  <h1>All episodes</h1>
+  <p>{episodes.length} episodes</p>
+  <div class="list">
+    {episodes.map((episode) => <EpisodeCard episode={episode} />)}
+  </div>
+</Base>
+
+<style>
+  .list { display: grid; gap: 1rem; }
+</style>

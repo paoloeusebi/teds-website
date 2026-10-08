@@ -1,0 +1,45 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { formatDate, formatDuration } from '../lib/format';
+
+interface Props { episode: CollectionEntry<'episodes'> }
+const { episode } = Astro.props;
+const { number, title, pubDate, durationSeconds, summary } = episode.data;
+const href = `${import.meta.env.BASE_URL}episodes/${episode.id}/`;
+---
+<article class="card">
+  <p class="meta">
+    {number !== null && <span>Episode {number}</span>}
+    <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
+    {durationSeconds && <span>{formatDuration(durationSeconds)}</span>}
+  </p>
+  <h3><a href={href}>{title}</a></h3>
+  {summary && <p class="summary">{summary}</p>}
+</article>
+
+<style>
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+  }
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--color-ink-muted);
+  }
+  h3 { margin: 0.4rem 0; font-size: 1.15rem; }
+  h3 a { color: var(--color-ink); text-decoration: none; }
+  h3 a:hover { color: var(--color-primary); }
+  .summary {
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Synthetic sample feed for offline builds (FEED_FILE=test/fixtures/feed.xml). Not real episode data. -->
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:podcast="https://podcastindex.org/namespace/1.0">
+  <channel>
+    <title>The Effective Data Scientist</title>
+    <link>http://theeffectivedatascientist.com/</link>
+    <item>
+      <title>Sample episode two</title>
+      <itunes:title>Sample episode two</itunes:title>
+      <link>https://theeffectivedatascientist.podigee.io/2-sample-episode-two</link>
+      <guid isPermaLink="false">sample-2</guid>
+      <pubDate>Fri, 12 Jun 2026 06:00:00 +0000</pubDate>
+      <description>Short summary of the second sample episode.</description>
+      <itunes:summary>Short summary of the second sample episode.</itunes:summary>
+      <content:encoded><![CDATA[<h3>Episode Summary</h3><p>Show notes with a <a href="https://example.com">link</a>.</p><script>alert(1)</script><ul><li>Highlight one</li></ul>]]></content:encoded>
+      <itunes:episode>2</itunes:episode>
+      <itunes:keywords>data science, careers</itunes:keywords>
+      <itunes:author>Sample Host</itunes:author>
+      <enclosure url="https://example.com/audio/2.mp3" type="audio/mpeg" length="1000"/>
+      <itunes:duration>1235</itunes:duration>
+      <podcast:transcript url="https://example.com/2.json" type="application/json"/>
+      <podcast:transcript url="https://example.com/2.vtt" type="text/vtt"/>
+    </item>
+    <item>
+      <title>Sample episode one</title>
+      <link>https://theeffectivedatascientist.podigee.io/1-sample-episode-one</link>
+      <guid isPermaLink="false">sample-1</guid>
+      <pubDate>Mon, 05 Jul 2021 15:05:56 +0000</pubDate>
+      <description></description>
+      <content:encoded><![CDATA[<p>First sample episode.</p>]]></content:encoded>
+      <itunes:episode>1</itunes:episode>
+      <enclosure url="https://example.com/audio/1.mp3" type="audio/mpeg" length="1000"/>
+      <itunes:duration>00:31:03</itunes:duration>
+    </item>
+  </channel>
+</rss>
