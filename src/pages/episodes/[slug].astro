@@ -1,0 +1,45 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { getEpisodes } from '../../lib/episodes';
+import { formatDate, formatDuration } from '../../lib/format';
+
+export async function getStaticPaths() {
+  const episodes = await getEpisodes();
+  return episodes.map((episode) => ({ params: { slug: episode.id }, props: { episode } }));
+}
+
+const { episode } = Astro.props;
+const { number, title, pubDate, durationSeconds, summary, audioUrl, audioType, authors, transcriptUrl } = episode.data;
+const { Content } = await render(episode);
+---
+<Base title={title} description={summary}>
+  <article class="episode">
+    <p class="meta">
+      {number !== null && <span>Episode {number}</span>}
+      <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
+      {durationSeconds && <span>{formatDuration(durationSeconds)}</span>}
+    </p>
+    <h1>{title}</h1>
+    {authors && <p class="authors">With {authors}</p>}
+
+    <audio controls preload="none">
+      <source src={audioUrl} type={audioType} />
+      <a href={audioUrl}>Download the episode</a>
+    </audio>
+
+    <div class="prose show-notes">
+      <Content />
+    </div>
+
+    {transcriptUrl && <p><a href={transcriptUrl}>Read the transcript</a></p>}
+  </article>
+</Base>
+
+<style>
+  .episode { padding-block: 2rem; }
+  .meta { display: flex; gap: 0.75rem; color: var(--color-ink-muted); font-size: 0.9rem; margin: 0; }
+  h1 { margin: 0.5rem 0; font-size: clamp(1.6rem, 4vw, 2.4rem); max-width: var(--measure); }
+  .authors { color: var(--color-ink-muted); }
+  audio { width: 100%; max-width: var(--measure); margin-block: 1.5rem; }
+</style>
