@@ -35,6 +35,18 @@ export function slugify(s: string): string {
     .replace(/^-+|-+$/g, '');
 }
 
+// Plain-text excerpt for cards and meta descriptions when the feed has no summary.
+function toPlainText(html: string, maxLength = 300): string {
+  const plain = sanitizeHtml(html, { allowedTags: [], allowedAttributes: {} })
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/\s+/g, ' ')
+    .trim()
+    // Podigee show notes often open with a heading such as "Episode Summary".
+    .replace(/^Episode Summary\s*/i, '');
+  return plain.length > maxLength ? `${plain.slice(0, maxLength).trimEnd()}...` : plain;
+}
+
 function parseDuration(v: string): number | null {
   if (!v) return null;
   if (/^\d+$/.test(v)) return Number(v);
@@ -60,6 +72,7 @@ export function parseFeed(xml: string): RawEpisode[] {
     const transcripts = asArray(item['podcast:transcript']);
     const vtt = transcripts.find((t: any) => String(t['@_type'] ?? '').includes('vtt')) ?? transcripts[0];
     const rawHtml = text(item['content:encoded']) || text(item.description);
+    const summary = text(item['itunes:summary'] || item.description).trim() || toPlainText(rawHtml);
 
     return {
       id: text(item.guid) || slug,
@@ -67,7 +80,7 @@ export function parseFeed(xml: string): RawEpisode[] {
       title,
       slug,
       pubDate: new Date(text(item.pubDate)),
-      summary: text(item['itunes:summary'] || item.description).trim(),
+      summary,
       html: sanitizeHtml(rawHtml),
       audioUrl: text(enclosure['@_url']),
       audioType: text(enclosure['@_type']) || 'audio/mpeg',

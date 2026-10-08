@@ -1,0 +1,21 @@
+---
+interface Props { src: string; type: string; title: string }
+const { src, type, title } = Astro.props;
+---
+<div class="player">
+  <audio controls preload="none" aria-label={`Play: ${title}`}>
+    <source src={src} type={type} />
+    <a href={src}>Download the episode</a>
+  </audio>
+</div>
+
+<style>
+  .player {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 0.75rem;
+    box-shadow: var(--shadow);
+  }
+  audio { display: block; width: 100%; }
+</style>
