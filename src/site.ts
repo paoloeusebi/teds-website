@@ -3,7 +3,7 @@ export const SITE_TAGLINE = 'Boost your career as a data scientist.';
 export const SITE_DESCRIPTION =
   'A podcast about the skills beyond code: influence, impact and career growth for data scientists.';
 export const HOSTS: { name: string; url?: string }[] = [
-  { name: 'Alexander Schacht' },
+  { name: 'Alexander Schacht', url: 'https://www.linkedin.com/in/dr-alexander-schacht' },
   { name: 'Paolo Eusebi' },
   { name: 'Aziza Rahimjanovna', url: 'https://www.linkedin.com/in/azizayormir' },
 ];
