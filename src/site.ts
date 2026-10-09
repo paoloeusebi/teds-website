@@ -6,8 +6,9 @@ export const HOSTS = 'Alexander Schacht and Paolo Eusebi';
 export const FEED_URL = 'https://theeffectivedatascientist.podigee.io/feed/mp3';
 
 // Listening platforms shown in the "Follow" row and footer.
-// Add Apple Podcasts and YouTube here once the show URLs are confirmed.
+// Add YouTube here once the channel URL is confirmed.
 export const PLATFORMS: { name: string; url: string }[] = [
+  { name: 'Apple Podcasts', url: 'https://podcasts.apple.com/podcast/the-effective-data-scientist/id1656926148' },
   { name: 'Spotify', url: 'https://open.spotify.com/show/3fKvhbOSd0I5xKFL6jvkXN' },
   { name: 'Podigee', url: 'https://theeffectivedatascientist.podigee.io/' },
   { name: 'RSS feed', url: FEED_URL },
