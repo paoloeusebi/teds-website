@@ -28,6 +28,17 @@ const metaDescription = description.length > 200 ? `${description.slice(0, 197).
     <title>{pageTitle}</title>
     <meta name="description" content={metaDescription} />
     <meta name="theme-color" content="#032439" />
+    <script is:inline>
+      // Apply the saved theme before first paint to avoid a flash of the wrong colors.
+      (function () {
+        var root = document.documentElement;
+        var saved = null;
+        try { saved = localStorage.getItem('theme'); } catch (e) {}
+        if (saved === 'light' || saved === 'dark') root.dataset.theme = saved;
+        var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.resolvedTheme = dark ? 'dark' : 'light';
+      })();
+    </script>
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/png" sizes="32x32" href={`${base}favicon-32.png`} />
     <link rel="apple-touch-icon" href={`${base}apple-touch-icon.png`} />
