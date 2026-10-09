@@ -4,7 +4,7 @@ export const SITE_DESCRIPTION =
   'A podcast about the skills beyond code: influence, impact and career growth for data scientists.';
 export const HOSTS: { name: string; url?: string }[] = [
   { name: 'Alexander Schacht', url: 'https://www.linkedin.com/in/dr-alexander-schacht' },
-  { name: 'Paolo Eusebi' },
+  { name: 'Paolo Eusebi', url: 'https://www.linkedin.com/in/paoloeusebi' },
   { name: 'Aziza Rahimjanovna', url: 'https://www.linkedin.com/in/azizayormir' },
 ];
 export const FEED_URL = 'https://theeffectivedatascientist.podigee.io/feed/mp3';
