@@ -1,5 +1,6 @@
 ---
-import { SITE_TITLE, HOSTS, PLATFORMS } from '../site';
+import { SITE_TITLE, PLATFORMS } from '../site';
+import HostNames from './HostNames.astro';
 const base = import.meta.env.BASE_URL;
 const year = new Date().getFullYear();
 ---
@@ -9,7 +10,7 @@ const year = new Date().getFullYear();
       <img src={`${base}brand/icon.png`} alt="" width="40" height="67" />
       <div>
         <p class="name">{SITE_TITLE}</p>
-        <p>Hosted by {HOSTS}</p>
+        <p>Hosted by <HostNames /></p>
       </div>
     </div>
     <nav aria-label="Footer">

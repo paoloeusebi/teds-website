@@ -1,0 +1,14 @@
+---
+import { HOSTS } from '../site';
+
+// "A, B and C", linking each host who has a profile URL.
+const separator = (i: number) => (i === 0 ? '' : i === HOSTS.length - 1 ? ' and ' : ', ');
+---
+{HOSTS.map((h, i) => (
+  <Fragment>{separator(i)}{h.url ? <a class="host-link" href={h.url}>{h.name}</a> : h.name}</Fragment>
+))}
+
+<style>
+  .host-link { color: inherit; text-decoration: underline; text-underline-offset: 0.15em; }
+  .host-link:hover { color: var(--color-primary-bright); }
+</style>
