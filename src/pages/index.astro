@@ -5,7 +5,8 @@ import FollowLinks from '../components/FollowLinks.astro';
 import Player from '../components/Player.astro';
 import { getEpisodes } from '../lib/episodes';
 import { formatDate, formatDuration } from '../lib/format';
-import { SITE_TAGLINE, SITE_DESCRIPTION, HOSTS } from '../site';
+import HostNames from '../components/HostNames.astro';
+import { SITE_TAGLINE, SITE_DESCRIPTION } from '../site';
 
 const episodes = await getEpisodes();
 const [latest, ...rest] = episodes;
@@ -19,7 +20,7 @@ const base = import.meta.env.BASE_URL;
         <p class="eyebrow">The podcast</p>
         <h1>{SITE_TAGLINE}</h1>
         <p class="lede">{SITE_DESCRIPTION}</p>
-        <p class="hosts">With {HOSTS}</p>
+        <p class="hosts">With <HostNames /></p>
         <div class="actions">
           {latest && <a class="button primary" href={`${base}episodes/${latest.id}/`}>Listen to the latest episode</a>}
           <a class="button secondary" href={`${base}episodes/`}>Browse all {episodes.length} episodes</a>
