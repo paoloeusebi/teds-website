@@ -45,12 +45,12 @@ const href = `${import.meta.env.BASE_URL}episodes/${episode.id}/`;
     font-size: 0.8rem;
     color: var(--color-ink-muted);
   }
-  .number { font-weight: 600; color: var(--color-primary); }
+  .number { font-weight: 600; color: var(--color-link); }
   .title { margin: 0; font-size: 1.1rem; }
   .title a { color: var(--color-ink); text-decoration: none; }
   /* Whole card is clickable */
   .title a::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
-  .card:hover .title a { color: var(--color-primary); }
+  .card:hover .title a { color: var(--color-link); }
   .summary {
     margin: 0;
     font-size: 0.92rem;

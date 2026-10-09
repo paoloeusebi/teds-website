@@ -94,19 +94,19 @@ const base = import.meta.env.BASE_URL;
   .latest-card {
     margin-top: 0.75rem;
     padding: clamp(1.5rem, 4vw, 2.5rem);
-    background: var(--color-ink);
-    color: var(--color-on-ink);
+    background: var(--color-band);
+    color: var(--color-on-band);
     border-radius: calc(var(--radius) * 1.5);
   }
   .latest-card .meta {
     display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 0;
-    font-size: 0.85rem; color: rgb(243 243 243 / 0.7);
+    font-size: 0.85rem; color: var(--color-on-band-muted);
   }
   .latest-card .number { color: var(--color-primary-bright); font-weight: 600; }
   .latest-card h2 { font-size: clamp(1.4rem, 3vw, 2rem); margin: 0.5rem 0 0.75rem; max-width: 30ch; }
   .latest-card h2 a { color: inherit; text-decoration: none; }
   .latest-card h2 a:hover { color: var(--color-primary-bright); }
-  .latest-card .summary { margin: 0 0 1.5rem; max-width: var(--measure); color: rgb(243 243 243 / 0.85); }
+  .latest-card .summary { margin: 0 0 1.5rem; max-width: var(--measure); color: var(--color-on-band-muted); }
 
   .recent { margin-top: 4rem; }
   .section-head {
